@@ -13,6 +13,29 @@ class App extends Component {
       zoom: 12
     };
   }
+ 
+  closeAllMarkers = () => {
+    const markers = this.state.markers.map(marker => {
+      marker.isOpen = false;
+      return marker;
+    });
+    this.setState({markers: Object.assign(this.state.markers, markers)});
+  };
+
+  handleMarkerClick = (marker) => {
+    this.closeAllMarkers();
+    console.log(marker);
+    marker.isOpen = true;
+    this.setState({markers: Object.assign(this.state.markers,marker)});
+    const venue = this.state.venues.find(venue => venue.id === marker.id);
+
+    SquareAPI.getVenueDetails(marker.id).then(res => {
+      const newVenue = Object.assign(venue, res.response.venue);
+      this.setState({venues: Object.assign(this.state.venues, newVenue)})
+      console.log(newVenue);
+    }); 
+  };
+
   componentDidMount() {
     SquareAPI.search({
       near: "San Francisco,CA",
@@ -26,7 +49,8 @@ class App extends Component {
           lat: venue.location.lat,
           lng: venue.location.lng,
           isOpen: false,
-          isVisible: true
+          isVisible: true,
+          id: venue.id
         };
       });
       this.setState({
@@ -41,7 +65,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Map {...this.state}/>
+        <Map {...this.state}
+        handleMarkerClick = {this.handleMarkerClick}/>
       </div>
     );
   }
