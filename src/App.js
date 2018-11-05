@@ -49,8 +49,9 @@ class App extends Component {
   componentDidMount() {
     SquareAPI.search({
       near: "San Francisco,CA",
-      query: "Tacos",
-      limit: 10
+      query: "Coffee",
+      limit: 10,
+      radius: 500
     }).then(results => {
       const { venues } = results.response;
       const { center } = results.response.geocode.feature.geometry;
