@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import Map from './component/Map';
 import SquareAPI from "./API/";
+import Map from "./component/Map";
 import SideBar from './component/SideBar';
+import InfoPane from './component/Info-Pane';
 
 class App extends Component {
   constructor() {
@@ -11,7 +12,7 @@ class App extends Component {
       venues: [],
       markers: [],
       center: [],
-      zoom: 15,
+      zoom: 12,
       updateSuperState: obj => {
         this.setState(obj);
       }
@@ -28,15 +29,15 @@ class App extends Component {
 
   handleMarkerClick = (marker) => {
     this.closeAllMarkers();
-    console.log(marker);
+    // console.log(marker);
     marker.isOpen = true;
-    this.setState({markers: Object.assign(this.state.markers,marker) });
+    this.setState({markers: Object.assign(this.state.markers, marker) });
     const venue = this.state.venues.find(venue => venue.id === marker.id);
 
     SquareAPI.getVenueDetails(marker.id).then(res => {
       const newVenue = Object.assign(venue, res.response.venue);
       this.setState({venues: Object.assign(this.state.venues, newVenue) });
-      console.log(newVenue);
+      // console.log(newVenue);
     }); 
   };
 
@@ -64,22 +65,33 @@ class App extends Component {
           id: venue.id
         };
       });
-      this.setState({
-        venues,
-        center,
-        markers
-      });
-      console.log(markers);
+      this.setState({ venues, center, markers });
+      // console.log(results)
     });
   }
 
   render() {
     return (
-      <div className="App">
-      <SideBar {...this.state} handleListItemCheck = {this.handleListItemCheck}/>
-        <Map {...this.state}
-        handleMarkerClick = {this.handleMarkerClick}/>
-      </div>
+      <main role="main">
+        <header role="banner" id="title">
+
+          <h1>Best Cafés in San Francisco</h1>
+          <h2>Information and Locations of Cafés</h2>
+          <p>(You can use the list filter on the left or quickly reference the info cards on the right.)</p>
+        </header>
+
+        <div className="App">
+          <SideBar id="side-bar" role="main" aria-label="venue filter results list"
+          {...this.state} handleListItemCheck = {this.handleListItemCheck}/>
+
+          <Map role="complementary" aria-label="map"
+          {...this.state}
+          handleMarkerClick = {this.handleMarkerClick}/>
+
+          <InfoPane {...this.state}
+            handleListItemClick={this.handleListItemClick} />
+        </div>
+      </main>
     );
   }
 }
