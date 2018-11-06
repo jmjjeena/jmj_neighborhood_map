@@ -4,6 +4,8 @@ export default class ListItem extends Component {
     render() {
         return (
             <li 
+                aria-label='Venue List'
+                tabIndex='0'
                 className="listItem" 
                 onClick={() =>this.props.handleListItemClick(this.props)}>
                 <img 

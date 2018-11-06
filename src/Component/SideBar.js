@@ -10,6 +10,7 @@ export default class SideBar extends Component {
         };
     }
 
+    // Toggle sidebar
     handleFilterVenues = () => {
         if(this.state.query.trim() !== ""){
             const venues = this.props.venues.filter(venue => 
@@ -41,11 +42,13 @@ export default class SideBar extends Component {
 
     render() {
         return (
-            <div className="sideBar">
+            <div aria-label='Side Bar' tabIndex='0'className="sideBar">
                 <input 
+                    aria-label='Search Filter'
+                    tabIndex='0'
                     type={"search"} 
                     id={"search"} 
-                    placeholder={"Filter Venues"}
+                    placeholder={"Search Filter"}
                     onChange={this.handleChange} 
                 />
                 <VenueList 

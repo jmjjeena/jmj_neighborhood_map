@@ -8,10 +8,11 @@ import {
         InfoWindow
         } from "react-google-maps"
 
+        // Set map bounds
 const MyMapComponent = withScriptjs(
     withGoogleMap(props => (
         <GoogleMap
-            defaultZoom={8}
+            defaultZoom={50}
             zoom={props.zoom}
             defaultCenter={{ lat: 37.775073, lng: -122.419457 }}
             center={props.center}
@@ -23,7 +24,7 @@ const MyMapComponent = withScriptjs(
                         const venueInfo = props.venues.find(venue => venue.id === marker.id);
                         return (
                             <Marker 
-                                key={idx} 
+                                key={idx}
                                 position={{lat: marker.lat, lng: marker.lng }}
                                 onClick={() => props.handleMarkerClick(marker)}
                                 animation={arr.length === 1 ? google.maps.Animation.BOUNCE : google.maps.Animation.DROP}
@@ -57,8 +58,8 @@ export default class Map extends Component {
                 {...this.props}
                 googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCVjG1_rpwST332EGF3YRDaSO0ez-ws_aw"
                 loadingElement={< div style={{ height: `100%` }} />}
-                containerElement={< div style={{ height: `100%`, width: `75%` }} />}
-                mapElement={< div style={{ height: `100%` }} />}
+                containerElement={< div style={{ height: `100%`, width: `100%` }} />}
+                mapElement={< div style={{ height: `100%`}} />}
             />
         )
     }

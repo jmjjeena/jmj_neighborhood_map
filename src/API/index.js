@@ -1,3 +1,4 @@
+// Get venue ID
 class Helper {
     static baseURL() {
         return "https://api.foursquare.com/v2"
@@ -43,6 +44,7 @@ class Helper {
     }
 }
 
+// Get venue info data using the venue's ID
 export default class SquareAPI {
     static search(urlPrams) {
         return Helper.simpleFetch('/venues/search', 'GET', urlPrams);

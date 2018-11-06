@@ -8,8 +8,10 @@ export default class VenueList extends Component {
                 {this.props.venues && 
                 this.props.venues.map((venue,idx) => (
                     <ListItem
-                         key={idx} 
-                         {...venue}
+                        tabIndex='0'
+                        aria-label='Venue List'
+                        key={idx} 
+                        {...venue}
                         handleListItemClick={this.props.handleListItemClick}
                     />
                 ))}
