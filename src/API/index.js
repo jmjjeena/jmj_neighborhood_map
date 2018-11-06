@@ -1,4 +1,3 @@
-// Get venue ID
 class Helper {
     static baseURL() {
         return "https://api.foursquare.com/v2"
@@ -11,48 +10,48 @@ class Helper {
         };
 
         return Object.keys(keys)
-        .map(key => `${key}=${keys[key]}`)
-        .join('&');
+            .map(key => `${key} = ${keys[key]}`)
+            .join("$");
     }
 
-    static urlBuilder(urlPrams){
-        if(!urlPrams) {
-            return ""
+    static urlBuilder(urlParams) {
+        if (!urlParams) {
+            return "";
         }
-        return Object.keys(urlPrams)
-            .map(key => `${key}=${urlPrams[key]}`)
-            .join('&');
+        return Object.keys(urlParams)
+            .map(key => `${key} = ${urlParams[key]}`)
+            .join("&");
     }
 
     static headers() {
         return {
-            Accept: 'application/json'
+            Accept: "application/json"
         };
     }
 
-    static simpleFetch(endPoint, method, urlPrams) {
+    static simpleFetch(endPoint, method, urlParams) {
         let requestData = {
             method,
             headers: Helper.headers()
         };
         return fetch(
-           `${Helper.baseURL()}${endPoint}?${Helper.auth()}&${Helper.urlBuilder(
-               urlPrams
+            `${Helper.baseURL()}${endPoint}?${Helper.auth()}&${Helper.urlBuilder(
+                urlParams
             )}`,
             requestData
         ).then(res => res.json());
     }
 }
 
-// Get venue info data using the venue's ID
-export default class SquareAPI {
-    static search(urlPrams) {
-        return Helper.simpleFetch('/venues/search', 'GET', urlPrams);
+
+export default class SquareApi {
+    static search(urlParams) {
+        return Helper.simpleFetch("/venues/search", "GET", urlParams);
     }
     static getVenueDetails(VENUE_ID) {
-        return Helper.simpleFetch(`/venues/${VENUE_ID}`, 'GET');
+        return Helper.simpleFetch(`/venues/${VENUE_ID}`, "GET");
     }
     static getVenuePhotos(VENUE_ID) {
-        return Helper.simpleFetch(`/venues/${VENUE_ID}/photos`, 'GET');
+        return Helper.simpleFetch(`/venues/${VENUE_ID}/photos`, "GET");
     }
 }

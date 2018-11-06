@@ -12,7 +12,10 @@ import {
 const MyMapComponent = withScriptjs(
     withGoogleMap(props => (
         <GoogleMap
-            defaultZoom={50}
+            role="application"
+            aria-label="map"
+            id="map"
+            defaultZoom={8}
             zoom={props.zoom}
             defaultCenter={{ lat: 37.775073, lng: -122.419457 }}
             center={props.center}
@@ -21,25 +24,32 @@ const MyMapComponent = withScriptjs(
                 props.markers
                     .filter(marker => marker.isVisible)
                     .map((marker, idx, arr) => {
+                        //match venue with marker
                         const venueInfo = props.venues.find(venue => venue.id === marker.id);
                         return (
                             <Marker 
                                 key={idx}
                                 position={{lat: marker.lat, lng: marker.lng }}
                                 onClick={() => props.handleMarkerClick(marker)}
-                                animation={arr.length === 1 ? google.maps.Animation.BOUNCE : google.maps.Animation.DROP}
+                                 //markers drop when loaded and bounce if only one location left
+                                animation={arr.length === 1 || marker.isOpen ? google.maps.Animation.BOUNCE : google.maps.Animation.DROP}
                             >
                                 {marker.isOpen && 
                                     venueInfo.bestPhoto && (
-                                        <InfoWindow>
+                                    <InfoWindow onCloseClick={() => props.closeAllMarkers()}>
                                             <React.Fragment>
                                                 <img 
-                                                    src = {`${venueInfo.bestPhoto.prefix}200x200${
+                                                    src = {`${venueInfo.bestPhoto.prefix}170x170${
                                                         venueInfo.bestPhoto.suffix
                                                     }`}
-                                                    alt={"Related to Venue"}
+                                                    alt={"Venue"}
                                                 />
-                                                <p>{venueInfo.name}</p>
+                                            <h3>{venueInfo.name}</h3>
+                                            <a href={venueInfo.shortUrl}>More Info</a>
+                                            <p>{venueInfo.price.currency}</p>
+                                            <p>{venueInfo.contact.formattedPhone}</p>
+                                            <p>{venueInfo.location.formattedAddress[0]}</p>
+                                            <p>{venueInfo.location.formattedAddress[1]}</p>
                                             </React.Fragment>
                                         </InfoWindow>
                                     )}
@@ -58,7 +68,8 @@ export default class Map extends Component {
                 {...this.props}
                 googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCVjG1_rpwST332EGF3YRDaSO0ez-ws_aw"
                 loadingElement={< div style={{ height: `100%` }} />}
-                containerElement={< div style={{ height: `100%`, width: `100%` }} />}
+                //sizes map to allow room for sidebar
+                containerElement={< div style={{ height: `100%`, width: `50%` }} />}
                 mapElement={< div style={{ height: `100%`}} />}
             />
         )

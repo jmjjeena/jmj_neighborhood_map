@@ -1,71 +1,85 @@
 .App {
   text-align: center;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   display: flex;
   flex-flow: row nowrap;
+  background-color:#262932b0
 }
+
 .sideBar {
     width: 25%;
-    }
+     border: 1px solid #1e4277;
+}
 
-#search {
+#search, .foursquare {
+  text-align: center;
+  font-weight: 900;
+  font-size: 16px;
+  color: #f4f4f4;
+  background: #0000008f;
   width: 100%;
-  height: 2rem;
-  font-size: 1rem;
+  border: 0;
+  font-family: 'Lato', sans-serif;
+  padding: 8px 0;
+  -webkit-box-shadow: inset 10px 15px 21px -8px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset 10px 15px 21px -8px rgba(0,0,0,0.75);
+  box-shadow: inset 10px 15px 21px -8px rgba(0,0,0,0.75);
 }
 
 .venueList {
-  padding: 1rem;
+  padding: 2px;
 }
 
 .listItem {
   list-style: none;
   font-size: 1rem;
-  padding: .5rem;
-  margin-top: 1rem;
+  padding: 1px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  font-family: cursive;
+  margin: 4px;
+  color: #2f4e4e;
   cursor: pointer;
-  background: #057570;
-  color: white;
+  border:3px solid #2eb9ce38;
   display: flex;
   align-items: center;
-  box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.listItem:hover {
+color: rgb(0, 199, 199);
+border:3px solid #2eb9ce;
+}
+
+li img {
+  background-color: #1e79696e;
+  border-radius: 17px;
+   margin: 4px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-.App-title {
-  font-size: 1.5rem;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media only screen and (max-width: 534px) {
+  .listItem {
+      flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media only screen and (max-width: 976px) {
+  .listItem {
+      font-size: 2vw;
+  }
+}
+
+@media only screen and (max-width: 976px) {
+  .listItem img {
+      width: 3vw;
+  }
+}
+ @media only screen and (max-width: 534px) {
+  .listItem img {
+    width: 5vw;
   }
 }
