@@ -1,44 +1,44 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Neighborhood-Map
+---
 
-## Available Scripts
+## Project Purpose:
 
-In the project directory, you can run:
+This app is built using React to demonstrate proficiency with skills learned over the course for the Front-End Nanodegree.
 
-### `npm start`
+## How to Load the App
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The project uses Node.js and the Create-React-App starter.  If you do not have Node >= 6.x installed, you can download it here: [Node.js](https://nodejs.org/en/)
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Once Node is installed, navigate to the directory where you want to store the app
+```
+git clone https://github.com/sarah-maris/reactnd-project-myreads.git
+npm install
+```
+Once all of the dependencies have been installed you can launch the app with
+```
+npm start
+```
 
-### `npm test`
+A new browser window should automatically open displaying the app.  If it doesn't, navigate to [http://localhost:3000/](http://localhost:3000/) in your browser
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## How to Use the App
+* Cafés in SF are displayed on a Google Map
+* Clicking on markers will toggle an info window, displaying information on location
+* Toggling the nav bar via hamburger will open a filterable list of comedy stores
 
-### `npm run build`
+## Offline Mode
+* Resources cached using Create React App's default service worker functions. Available in production mode only.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Resources and Documentation:
+* [Create-react-app Documentation](https://github.com/facebookincubator/create-react-app)
+* [React Router Documentation](http://knowbody.github.io/react-router-docs/)
+* [React Training/React Router](https://reacttraining.com/react-router/web/api/BrowserRouter)
+* [React API](https://facebook.github.io/react/docs/react-api.html)
+* [Google Map React Component Tutorial](https://www.npmjs.com/package/google-maps-react)
+* [FourSquare API Documentation](https://developer.foursquare.com/docs)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Udacity Resources:
+* [Project Rubric](https://review.udacity.com/#!/rubrics/1351/view)
+* [Udacity CSS Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/css.html)
+* [Udacity HTML Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/index.html)
+* [Udacity JavaScript Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/javascript.html)
