@@ -48,7 +48,7 @@ const MyMapComponent = withScriptjs(
                                                 <img src={`${venueInfo.bestPhoto.prefix}170x170${venueInfo.bestPhoto.suffix}`} alt={"Venue"} />
                                                 <h3>{venueInfo.name}</h3>
                                                 <a href={venueInfo.shortUrl}>More Info</a>
-                                                <p>{venueInfo.price.currency}</p>
+                                            <p>{venueInfo.price && venueInfo.price.currency ? venueInfo.price.currency : ""}</p>
                                                 <p>{venueInfo.contact.formattedPhone}</p>
                                                 <p>{venueInfo.location.formattedAddress[0]}</p>
                                                 <p>{venueInfo.location.formattedAddress[1]}</p>

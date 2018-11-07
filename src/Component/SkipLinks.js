@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 export default class SkipLinks extends Component {
     render() {
         return (
@@ -12,4 +13,4 @@ export default class SkipLinks extends Component {
             </ul>
         );
     }
-} 
+}

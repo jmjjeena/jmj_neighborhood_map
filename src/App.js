@@ -5,8 +5,6 @@ import Map from "./component/Map";
 import SideBar from './component/SideBar';
 import InfoPane from './component/Info-Pane';
 import SkipLinks from './component/SkipLinks';
-// import TestBar from './component/test';
-// import ErrorBoundary from './component/error-boundary';
 
 class App extends Component {
   constructor() {
@@ -27,14 +25,14 @@ class App extends Component {
       marker.isOpen = false;
       return marker;
     });
-    this.setState({markers: Object.assign(this.state.markers, markers) });
+    this.setState({ markers: Object.assign(this.state.markers, markers) });
   };
 
-  handleMarkerClick = (marker) => {
+  handleMarkerClick = marker => {
     this.closeAllMarkers();
     // console.log(marker);
     marker.isOpen = true;
-    this.setState({markers: Object.assign(this.state.markers, marker) });
+    this.setState({ markers: Object.assign(this.state.markers, marker) });
     const venue = this.state.venues.find(venue => venue.id === marker.id);
 
     SquareAPI.getVenueDetails(marker.id).then(res => {
@@ -44,10 +42,9 @@ class App extends Component {
     }); 
   };
 
-  handleListItemCheck = venue => {
+  handleListItemClick = venue => {
     const marker = this.state.markers.find(marker => marker.id === venue.id);
     this.handleMarkerClick(marker);
-    // console.log(venue);
   }
 
   componentDidMount() {
@@ -82,35 +79,36 @@ class App extends Component {
   render() {
     return (
       <main role="main">
-        <header role="banner" id="title" >
+        <header role="banner" id="title">
+
           {/* skip links to get focus across to info cards */}
           <SkipLinks />
 
-          <h1 >Best Cafés in San Francisco</h1>
-          <h2>Information and Locations of Cafés</h2>
-          <p>(You can use the list filter on the left or quickly reference the info cards on the right.)</p>
+          <h1>Best Cafés in San Francisco</h1>
         </header>
 
         <div className="App">
           {/* uncomment below to test full app error message(for maps test, break api key or url in map.js) */}
           {/* {null.map(errorTestSwitch => errorTestSwitch)} */}
           {/* Error from above flashes for only 2 seconds in developer mode, build and deploy for sustained testing */}
-          <SideBar id="side-bar" role="main" aria-label="venue filter results list"
-          {...this.state} handleListItemCheck = {this.handleListItemCheck}/>
+          <SideBar id="side-bar" role="main" aria-label="venue filter results list" {...this.state}
+            handleListItemClick={this.handleListItemClick} />
 
-            {/* skip links to get across to info cards or back to search field */}
-            <SkipLinks />
 
-          <Map role="complementary" aria-label="map"
-          {...this.state}
+          {/* skip links to get across to info cards or back to search field */}
+          <SkipLinks />
+
+          <Map role="complementary" aria-label="map"{...this.state}
             closeAllMarkers={this.closeAllMarkers}
-            handleMarkerClick = {this.handleMarkerClick}/>
+            handleMarkerClick={this.handleMarkerClick} />
 
-            {/* <TestBar/> */}
+          {/* <TestBar/> */}
+
           <InfoPane role="main" aria-label="info cards"{...this.state}
             handleListItemClick={this.handleListItemClick} />
-        
-            {/* skip links to get across to top of info cards or back to search field */}
+
+
+          {/* skip links to get across to top of info cards or back to search field */}
           <SkipLinks />
         </div>
       </main>
