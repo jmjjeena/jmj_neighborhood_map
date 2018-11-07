@@ -8,7 +8,7 @@ import {
         Marker, 
         InfoWindow 
     } from "react-google-maps";
-import ErrorBoundary from "../component/ErrorBoundary";
+import ErrorBoundary from "./ErrorBoundary";
 
 const MyMapComponent = withScriptjs(
     withGoogleMap(props => (
