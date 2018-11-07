@@ -1,32 +1,4 @@
 import React from 'react';
-import ErrorPage from './ErrorPage';
-// import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
- // class ErrorBoundary extends React.Component {
-//     constructor(props) {
-//       super(props);
-//       this.state = { hasError: false };
-//     }
-
-//     componentDidCatch(error, info) {
-//       // Display fallback UI
-//       this.setState({ hasError: true });
-//       // You can also log the error to an error reporting service
-//     //   logErrorToMyService(error, info);
-//     }
-
-//     render() {
-//       if (this.state.hasError) {
-//         // You can render any custom fallback UI
-//         return <h1>Something went wrong.</h1>;
-//       }
-//       return this.props.children;
-//     }
-//   }
- //   export default ()=> (
-//     <ErrorBoundary>
-//       <MyMapComponent />
-//     </ErrorBoundary>
-//   ) 
 
 class ErrorBoundary extends React.Component {
     constructor(props) {
@@ -40,16 +12,16 @@ class ErrorBoundary extends React.Component {
             error: error,
             errorInfo: errorInfo
         })
-        // You can also log error messages to an error reporting service here
+        //log error messages to an error reporting service here
     }
 
     render() {
         if (this.state.errorInfo) {
             // Error path
             return (
-                <div>
-                    <h2>This has issues.</h2>
-                    <ErrorPage />
+                <div className="errFrame">
+                    <h2 className="failMSG">Cancel my subscription 'cuz I don't need these issues.</h2>
+                    <span className="info">What went wrong?? click details to see more info</span>
                     <details style={{ whiteSpace: 'pre-wrap' }}>
                         {this.state.error && this.state.error.toString()}
                         <br />
@@ -58,7 +30,6 @@ class ErrorBoundary extends React.Component {
                 </div>
             );
         }
-        // Normally, just render children
         return this.props.children;
     }
 }

@@ -3,12 +3,9 @@ import React, { Component } from 'react';
 export default class ListItem extends Component {
     render() {
         return (
-            <li 
-                aria-label='Venue List'
-                tabIndex='0'
-                className="listItem" 
-                onClick={() =>
-                    this.props.handleListItemClick(this.props)}>
+            <button 
+                className="listItem"
+                onClick={() => this.props.handleListItemClick(this.props)}>
                 <img 
                     src={
                         this.props.categories[0].icon.prefix +
@@ -17,12 +14,10 @@ export default class ListItem extends Component {
                         } 
                         alt={this.props.categories[0].name}
                 />
-                <a aria-label={this.props.name}>
-                    <span>
+                <span aria-label={this.props.name}>
                         {this.props.name}
-                    </span>
-                </a> 
-            </li>
+                </span>
+            </button>
         )       
     }
 }

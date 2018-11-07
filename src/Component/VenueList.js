@@ -4,12 +4,12 @@ import ListItem from './ListItem';
 export default class VenueList extends Component {
     render() {
         return (
-            <ol className="venueList">
+            <ol tabIndex='0'
+                aria-label='Venue List'
+                className="venueList">
                 {this.props.venues && 
                 this.props.venues.map((venue,idx) => (
                     <ListItem
-                        tabIndex='0'
-                        aria-label='Venue List'
                         key={idx} 
                         {...venue}
                         handleListItemClick={this.props.handleListItemClick}

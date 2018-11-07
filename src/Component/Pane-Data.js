@@ -1,11 +1,19 @@
 import React, { Component } from "react";
+
 export default class PaneData extends Component {
     render() {
-        return <li className="paneData" onLoad={() => this.props.handleListItemClick(this.props)}>
-            <img src={this.props.categories[0].icon.prefix + "32" + this.props.categories[0].icon.suffix} alt={this.props.categories[0].name} />
-            {this.props.name}
-            {this.props.timeZone}
+        return (
 
-        </li>
+            <button className="pane-data" onClick={() => this.props.handleListItemClick(this.props)}>
+                <h4>{this.props.name}</h4>
+                <p className="details">
+                    {this.props.location.formattedAddress[0]}
+                    {this.props.location.formattedAddress[1]}
+                    {/* {this.props.price.currency} */}
+                    {this.props.location.formattedAddress[0]}
+                    {this.props.location.formattedAddress[1]}
+                </p>
+            </button>
+        );
     }
 }

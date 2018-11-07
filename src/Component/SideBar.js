@@ -10,14 +10,12 @@ export default class SideBar extends Component {
         };
     }
 
-    // Toggle sidebar
     handleFilterVenues = () => {
         if(this.state.query.trim() !== ""){
-            const venues = this.props.venues.filter(venue => 
-                venue.name.toLowerCase().includes(this.state.query.toLowerCase())
-            );
-            console.log(venues);
-        return venues;
+            const venues = this.props.venues.filter(venue => venue.name
+                .toLowerCase()
+                .includes(this.state.query.toLowerCase()))
+            return venues;
         }
         return this.props.venues;
    };
@@ -30,6 +28,7 @@ export default class SideBar extends Component {
                 .toLowerCase()
                 .includes(e.target.value.toLowerCase());
             const marker = this.props.markers.find(marker => marker.id === venue.id);
+            // filters venues as input matches
             if(isMatched) {
                 marker.isVisible = true;
             } else {
@@ -43,14 +42,22 @@ export default class SideBar extends Component {
     render() {
         return (
             <div aria-label='Side Bar' tabIndex='0'className="sideBar">
-                <input 
-                    aria-label='Search Filter'
-                    tabIndex='0'
-                    type={"search"} 
-                    id={"search"} 
-                    placeholder={"Search Filter"}
-                    onChange={this.handleChange} 
-                />
+                {/* search bar */}
+                <div className="cursor">
+                    <input 
+                        // aria-label={labelText}
+                            role="Search"
+                            aria-required="true"
+                            type={"search"}  
+                            id="search"
+                            tabIndex="0"
+                            placeholder={"Search Filter"}
+                            onChange={this.handleChange} 
+                    />
+                </div>
+                {/* foursquare logo */}
+                <img className="foursquare" src={window.location.origin + '/foursquare.png'} alt="powered by foursquare" />
+                
                 <VenueList 
                     {...this.props} 
                     venues={this.handleFilterVenues()}

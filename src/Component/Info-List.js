@@ -1,16 +1,15 @@
 import React, { Component } from "react";
-import ListItem from './ListItem';
-import PaneData from "./Info-Pane";
+import PaneData from "./Pane-Data";
+
 export default class InfoList extends Component {
     render() {
         return (
-            <ol className="info-list">
+            <div>
                 {this.props.venues &&
-                    this.props.venues.map((venue, idx) => (
-                        <PaneData key={idx} {...venue}
-                            handleListItemClick={this.props.handleListItemClick} />
+                    this.props.venues.map((venue, index) => (
+                        <PaneData key={index} {...venue} handleListItemClick={this.props.handleListItemClick} />
                     ))}
-            </ol>
+            </div>
         );
     }
 }
