@@ -11,7 +11,7 @@ The project uses Node.js and the Create-React-App starter.  If you do not have N
 
 Once Node is installed, navigate to the directory where you want to store the app
 ```
-git clone https://github.com/sarah-maris/reactnd-project-myreads.git
+git clone https://github.com/jmjjeena/jmj_neighborhood_map.git
 npm install
 ```
 Once all of the dependencies have been installed you can launch the app with
