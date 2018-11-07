@@ -3,7 +3,7 @@ import './App.css';
 import SquareAPI from "./API/";
 import Map from "./component/Map";
 import SideBar from './component/SideBar';
-import InfoPane from './component/Info-Pane';
+import InfoPane from './component/InfoPane';
 import SkipLinks from './component/SkipLinks';
 
 class App extends Component {
