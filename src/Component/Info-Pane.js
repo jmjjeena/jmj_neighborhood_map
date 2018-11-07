@@ -16,7 +16,7 @@ export default class InfoPane extends Component {
                 <h3 id="info-cards" tabIndex="0">Info Cards</h3>
 
                 {/* foursquare logo */}
-                <img className="foursquare" src={window.location.origin + '/foursquare.png'} alt="powered by foursquare" />
+                {/* <img className="foursquare" src={window.location.origin + '/foursquare.png'} alt="powered by foursquare" /> */}
 
                 <InfoList
                     {...this.props}

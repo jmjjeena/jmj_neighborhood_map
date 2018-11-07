@@ -47,11 +47,11 @@ export default class SideBar extends Component {
                         type={"search"}
                         id="search"
                         tabIndex="0"
-                        placeholder={"...Filter Listing Here"}
+                        placeholder={"Search"}
                         onChange={this.handleChange} />
                 </div>
                 {/* foursquare logo */}
-                <img className="foursquare" src={window.location.origin + '/foursquare.png'} alt="powered by foursquare" />
+                {/* <img className="foursquare" src={window.location.origin + '/foursquare.png'} alt="powered by foursquare" /> */}
                 <VenueList
                     {...this.props}
                     venues={this.handleFilterVenues()}
