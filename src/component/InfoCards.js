@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import InfoList from "./InfoList";
+import InfoCardList from "./InfoCardList";
 
 export default class InfoPane extends Component {
     constructor() {
@@ -15,7 +15,7 @@ export default class InfoPane extends Component {
             <div className="info-cards">
                 <h3 id="info-cards" tabIndex="0">Info Cards</h3>
 
-                <InfoList
+                <InfoCardList
                     {...this.props}
                 />
             </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import SquareAPI from "./api/index";
+import SquareAPI from "./API/index";
 import Map from "./component/Map";
 import SideBar from './component/SideBar';
 import InfoPane from './component/InfoCards';

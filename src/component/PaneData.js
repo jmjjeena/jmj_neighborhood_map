@@ -9,7 +9,6 @@ export default class PaneData extends Component {
                 <p className="details">
                     {this.props.location.formattedAddress[0]}
                     {this.props.location.formattedAddress[1]}
-                    {/* {this.props.price.currency} */}
                     {this.props.location.formattedAddress[0]}
                     {this.props.location.formattedAddress[1]}
                 </p>
