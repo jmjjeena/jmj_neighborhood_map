@@ -2,40 +2,44 @@ import React, { Component } from "react";
 import VenueList from "./VenueList";
 
 export default class SideBar extends Component {
-    constructor() {
-        super();
-        this.state = {
+    state = {
             query: "",
             venues: []
         };
-    }
+
     handleFilterVenues = () => {
-        if (this.state.query.trim() !== "") {
-            const venues = this.props.venues.filter(venue => venue.name
-                .toLowerCase()
-                .includes(this.state.query.toLowerCase()))
-            return venues;
+        const { query } = this.state;
+        const { venues } = this.props;
+
+        if (query.trim() !== "") {
+            const allVenues = venues.filter(venue => 
+                venue.name.toLowerCase().includes(query.toLowerCase()))
+            return allVenues;
         }
-        return this.props.venues;
-    }
+        return venues;
+    };
     handleChange = e => {
-        this.setState({ query: e.target.value });
-        const markers = this.props.venues.map(venue => {
-            const isMatched = venue.name
-                .toLowerCase()
-                .includes(e.target.value.toLowerCase());
-            const marker = this.props.markers.find(marker => marker.id === venue.id);
+        const value = e.target.value;
+        const { venues, markers, updateSuperState } = this.props;
+
+        this.setState({ query: value });
+        const newMarkers = venues.map(venue => {
+            const matched = 
+                venue.name.toLowerCase().includes(value.toLowerCase());
+            const marker = markers.find(marker => marker.id === venue.id);
             // filters venues as input matches
-            if (isMatched) {
+            if (matched) {
                 marker.isVisible = true;
             } else {
                 marker.isVisible = false;
             }
             return marker;
         });
-        this.props.updateSuperState({ markers })
+        updateSuperState({ markers: newMarkers });
     };
     render() {
+        const { handleListItemClick} = this.props;
+        const { handleFilterVenues, handleChange } = this;
         return (
             <div className="sideBar">
                 {/* search bar */}
@@ -48,15 +52,16 @@ export default class SideBar extends Component {
                         id="search"
                         tabIndex="0"
                         placeholder={"Search"}
-                        onChange={this.handleChange} />
+                        onChange={e => handleChange(e)} 
+                    />
                 </div>
-                {/* foursquare logo */}
-                {/* <img className="foursquare" src={window.location.origin + '/foursquare.png'} alt="powered by foursquare" /> */}
+               
                 <VenueList
                     {...this.props}
-                    venues={this.handleFilterVenues()}
-                    handleListItemClick={this.props.handleListItemClick} />
+                    venues={handleFilterVenues()}
+                    handleListItemClick={handleListItemClick} 
+                />
             </div>
-        )
+        );
     }
 }
