@@ -1,3 +1,16 @@
+html,body {
+  height: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 56.25%;
+}
+
+body {
+  overflow: hidden;
+  
+}
+
 .App {
   text-align: center;
   height: 100vh;
@@ -5,10 +18,6 @@
   display: flex;
   flex-flow: row nowrap;
   background-color: #262932b0
-}
-
-body {
-  overflow: hidden;
 }
 
 /* skip links deactivated until further implemntation */
@@ -22,6 +31,7 @@ body {
   position: absolute;
   top: -3em;
   left: 5em;
+  border: 3px #3399cc solid;
   background-color: #000;
   color: #fff;
   padding: 0.5em 0.75em;
@@ -207,7 +217,7 @@ button img {
   width: 50%;
 }
 
-.failMSG {
+.failuremsg {
   margin: 0px;
   font-family: cursive;
   color: #c1cc2f;
@@ -221,7 +231,7 @@ details {
   color: #c4cecf;
 }
 
-.info, details, .failMSG {
+.info, details, .failuremsg {
   margin: 4px;
   padding: 2px;
 }
