@@ -176,12 +176,12 @@ p {
 
 }
 
-.pane-data {
+.card-data {
   font-size: .5rem;
   flex-flow: column;
 }
 
-.listItem, .pane-data {
+.listItem, .card-data {
   list-style: none;
   font-size: 1rem;
   padding: 1px;
@@ -199,9 +199,9 @@ p {
 }
 
 .listItem:hover,
-.pane-data:hover, 
+.card-data:hover, 
 .listItem:focus,
-.pane-data:focus {
+.card-data:focus {
   color: rgb(0, 199, 199);
   border: 3px solid #2eb9ce;
 }
@@ -239,7 +239,7 @@ details {
 @media only screen and (max-width: 534px) {
 
   .listItem,
-  .pane-data {
+  .card-data {
     flex-direction: column;
   }
 }

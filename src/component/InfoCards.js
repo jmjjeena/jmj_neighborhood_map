@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import InfoCardList from "./InfoCardList";
 
-export default class InfoPane extends Component {
+export default class InfoCards extends Component {
     constructor() {
         super();
         this.state = {

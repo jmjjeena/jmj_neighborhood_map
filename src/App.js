@@ -3,7 +3,7 @@ import './App.css';
 import SquareAPI from "./API/index";
 import Map from "./component/Map";
 import SideBar from './component/SideBar';
-import InfoPane from './component/InfoCards';
+import InfoCards from './component/InfoCards';
 import SkipLinks from './component/SkipLinks';
 
 class App extends Component {
@@ -102,7 +102,7 @@ class App extends Component {
 
           {/* <TestBar/> */}
 
-          <InfoPane role="main" aria-label="info cards"{...this.state}
+          <InfoCards role="main" aria-label="info cards"{...this.state}
             handleListItemClick={this.handleListItemClick} />
 
 

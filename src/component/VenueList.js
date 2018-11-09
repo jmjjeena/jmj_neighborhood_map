@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import ListItem from "./ListItem";
 
 const VenueList = ({ venues, handleListItemClick }) => {

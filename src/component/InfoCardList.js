@@ -1,12 +1,12 @@
 import React from "react";
-import PaneData from "./PaneData";
+import CardData from "./CardData";
 
 const InfoCardList = ({ venues, handleListItemClick }) => {
     return (
         <div>
             {venues &&
                 venues.map((venue, index) => (
-                    <PaneData
+                    <CardData
                         key={index}
                         {...venue}
                         handleListItemClick={handleListItemClick}
