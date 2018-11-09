@@ -71,7 +71,7 @@ class App extends Component {
         FourSquareFailure.setAttribute('class', 'failuremsg')
         FourSquareFailure.innerHTML = "Foursquare is Down with error of " + error + " !";
         document.getElementsByClassName('sideBar')[0].appendChild(FourSquareFailure);
-      })
+      });
   }
 
   render() {

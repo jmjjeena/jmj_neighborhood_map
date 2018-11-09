@@ -217,7 +217,7 @@ button img {
   width: 50%;
 }
 
-.failuremsg {
+.failMSG {
   margin: 0px;
   font-family: cursive;
   color: #c1cc2f;
@@ -231,7 +231,7 @@ details {
   color: #c4cecf;
 }
 
-.info, details, .failuremsg {
+.info, details, .failMSG {
   margin: 4px;
   padding: 2px;
 }
