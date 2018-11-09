@@ -5,8 +5,15 @@ export default class ListItem extends Component {
         return (
             <button className="listItem" 
                     onClick={() => this.props.handleListItemClick(this.props)}>
-                <img src={this.props.categories[0].icon.prefix + "32" + this.props.categories[0].icon.suffix} alt={this.props.categories[0].name} />
-                <span aria-label={this.props.name}>
+                <img 
+                    src={this.props.categories[0].icon.prefix + 
+                    "34" + 
+                    this.props.categories[0].icon.suffix
+                    } 
+                    alt={this.props.categories[0].name} 
+                />
+                <span 
+                    aria-label={this.props.name}>
                     {this.props.name}
                 </span>
             </button>

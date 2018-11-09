@@ -10,13 +10,10 @@ export default class InfoPane extends Component {
         };
     }
     render() {
-        console.log("props in InfoPane", this.props)
+        console.log("props in InfoCards", this.props)
         return (
-            <div className="info-pane">
+            <div className="info-cards">
                 <h3 id="info-cards" tabIndex="0">Info Cards</h3>
-
-                {/* foursquare logo */}
-                {/* <img className="foursquare" src={window.location.origin + '/foursquare.png'} alt="powered by foursquare" /> */}
 
                 <InfoList
                     {...this.props}

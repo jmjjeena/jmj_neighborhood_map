@@ -3,7 +3,7 @@ import './App.css';
 import SquareAPI from "./API/";
 import Map from "./component/Map";
 import SideBar from './component/SideBar';
-import InfoPane from './component/InfoPane';
+import InfoPane from './component/InfoCards';
 import SkipLinks from './component/SkipLinks';
 
 class App extends Component {
@@ -66,7 +66,7 @@ class App extends Component {
         };
       });
       this.setState({ venues, center, markers });
-      // console.log(results)
+      // console.log(results);
       })
       .catch(error => {
         const FSFailMsg = document.createElement('div');
