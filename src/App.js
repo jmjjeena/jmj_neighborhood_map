@@ -7,9 +7,7 @@ import InfoPane from './component/InfoCards';
 import SkipLinks from './component/SkipLinks';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
+  state = {
       venues: [],
       markers: [],
       center: [],
@@ -18,7 +16,7 @@ class App extends Component {
         this.setState(obj);
       }
     };
-  }
+ 
  
   closeAllMarkers = () => {
     const markers = this.state.markers.map(marker => {
@@ -69,10 +67,10 @@ class App extends Component {
       // console.log(results);
       })
       .catch(error => {
-        const FSFailMsg = document.createElement('div');
-        FSFailMsg.setAttribute('class', 'failMSG')
-        FSFailMsg.innerHTML = "Foursquare is Down with error of " + error + "! GRAB THE CAT!!";
-        document.getElementsByClassName('sideBar')[0].appendChild(FSFailMsg);
+        const FourSquareFailure = document.createElement('div');
+        FourSquareFailure.setAttribute('class', 'failuremsg')
+        FourSquareFailure.innerHTML = "Foursquare is Down with error of " + error + " !";
+        document.getElementsByClassName('sideBar')[0].appendChild(FourSquareFailure);
       })
   }
 
