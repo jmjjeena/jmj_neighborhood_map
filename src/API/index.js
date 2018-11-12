@@ -7,8 +7,8 @@ class Helper {
     //version required-only update after code review
     static auth(){
         const keys = {
-            client_id: 'E5UCHG55OHFZ2LIQ55W3XTLPVC1411IT1SKV33LG2GN1QX5R',
-            client_secret: 'IAOLSWF02K2G1F01TYPTMMFUGONS0IMLHMTHH1E3RQ3BFM0U',
+            client_id: 'SHG24GNTPQZPXQ5QWTHSC2EPVTMXXQXPKDEU2JTECTD3U3YM',
+            client_secret: 'JEZG1NIFPZ222TBQ5U4XTPL3GMA1IGQRJDKX4QJ52RYVE50K',
             v:'20181101'
         };
 
@@ -33,6 +33,7 @@ class Helper {
     }
 
     static checkStatus(response) {
+        console.log("response in checkstatus", response)
         if (response.ok) {
             return response;
         } else {
@@ -46,6 +47,8 @@ class Helper {
             method,
             headers: Helper.headers()
         };
+        console.log({ requestData })
+        console.log( "endpoint: ", endpoint, "urlparams: ", urlParams)
         return fetch(
             `${Helper.baseURL()}${endpoint}?${Helper.auth()}&${Helper.urlBuilder(
                 urlParams
@@ -53,16 +56,17 @@ class Helper {
             requestData
         )
             .then(Helper.checkStatus)
-            .then(response => response.json()
-            );
+            .then(response => response.json());
     }
 }
 
-export default class SquareAPI {
+export default class FourSquareAPI {
     static search(urlParams) {
+        console.log("urlparams", urlParams)
         return Helper.simpleFetch('/venues/search', 'GET', urlParams);
     }
     static getVenueDetails(VENUE_ID) {
+        console.log("VENUE ID IN SF: ", VENUE_ID)
         return Helper.simpleFetch(`/venues/${VENUE_ID}`, 'GET');
     }
     static getVenuePhotos(VENUE_ID) {

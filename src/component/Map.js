@@ -1,6 +1,8 @@
 /*global google*/
 //above google comment required for marker animations
 import React, { Component } from "react";
+import VenueCard from './VenueCard';
+
 import { 
         withScriptjs,
         withGoogleMap, 
@@ -10,7 +12,7 @@ import {
     } from "react-google-maps";
 import ErrorBoundary from "./ErrorBoundary";
 
-const MyMapComponent = withScriptjs(
+const MapComponent = withScriptjs(
     withGoogleMap(props => (
         <GoogleMap
             role="application"
@@ -43,24 +45,25 @@ const MyMapComponent = withScriptjs(
                             >
                                 {marker.isOpen &&
                                     venueInfo.bestPhoto && (
-                                        <InfoWindow onCloseClick= {() => props.closeAllMarkers()}>
-                                            <React.Fragment>
-                                                <img src={`${venueInfo.bestPhoto.prefix}170x170${venueInfo.bestPhoto.suffix}`} alt={"Venue"} />
-                                                <h3>{venueInfo.name}</h3>
-                                                <a href={venueInfo.shortUrl}>More Info</a>
-                                                <p>{venueInfo.price && venueInfo.price.currency ? venueInfo.price.currency : ""}</p>
-                                                <p>{venueInfo.contact.formattedPhone}</p>
-                                                <p>{venueInfo.location.formattedAddress[0]}</p>
-                                                <p>{venueInfo.location.formattedAddress[1]}</p>
-                                            </React.Fragment>
-                                        </InfoWindow>
-                                    )}
+                                    <InfoWindow className="venueCard" onCloseClick={() => props.closeAllMarkers()}>
+                                        <VenueCard 
+                                            prefix= {venueInfo.bestPhoto.prefix}
+                                            suffix={venueInfo.bestPhoto.suffix}
+                                            name={venueInfo.name}
+                                            shortUrl={venueInfo.shortUrl}
+                                            price={venueInfo.price}
+                                            formattedPhone={venueInfo.contact.formattedPhone}
+                                            formattedAddress={venueInfo.location.formattedAddress}
+                                        />
+                                    </InfoWindow> 
+                            )}
                             </Marker>
                         );
                     })}
         </GoogleMap>
     ))
 );
+
 export default class Map extends Component {
     render() {
         return (
@@ -68,14 +71,14 @@ export default class Map extends Component {
                 {/* // uncomment below to test full app error message(for maps only test, break api key or url in map.js) */}
                 {/* {null.map(errorTestSwitch => errorTestSwitch)}  */}
                 {/* // Error from above flashes for only 2 seconds in developer mode, build and deploy for sustained testing */}
-                <MyMapComponent className="map"
+                <MapComponent className="map"
                     {...this.props}
                     // error from broken url will hold frame size and display info
                     // wrong api key shows default google error message
                     googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCVjG1_rpwST332EGF3YRDaSO0ez-ws_aw"
                     loadingElement={<div style={{ height: `100%` }} />}
                     //sizes map to allow room for sidebar
-                    containerElement={<div style={{ height: `100%`, width: `50%` }} />}
+                    containerElement={<div style={{ height: `100%`, width: `75%` }} />}
                     mapElement={<div style={{ height: `100%` }} />}
                 />
             </ErrorBoundary>

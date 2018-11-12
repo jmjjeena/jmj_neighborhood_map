@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import SquareAPI from "./API/index";
+import FourSquareAPI from "./API/index";
 import Map from "./component/Map";
 import SideBar from './component/SideBar';
 import InfoCards from './component/InfoCards';
@@ -11,7 +11,7 @@ class App extends Component {
       venues: [],
       markers: [],
       center: [],
-      zoom: 12,
+      zoom: 14,
       updateSuperState: obj => {
         this.setState(obj);
       }
@@ -33,8 +33,9 @@ class App extends Component {
     this.setState({ markers: Object.assign(this.state.markers, marker) });
     const venue = this.state.venues.find(venue => venue.id === marker.id);
 
-    SquareAPI.getVenueDetails(marker.id).then(res => {
+    FourSquareAPI.getVenueDetails(marker.id).then(res => {
       const newVenue = Object.assign(venue, res.response.venue);
+      console.log({newVenue})
       this.setState({venues: Object.assign(this.state.venues, newVenue) });
       // console.log(newVenue);
     }); 
@@ -46,11 +47,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    SquareAPI.search({
+    FourSquareAPI.search({
       near: "San Francisco,CA",
       query: "Cafe",
-      limit: 10,
-      radius: 500
+      limit: 15,
+      radius: 1000
     }).then(results => {
       const { venues } = results.response;
       const { center } = results.response.geocode.feature.geometry;
@@ -94,16 +95,19 @@ class App extends Component {
 
 
           {/* skip links to get across to info cards or back to search field */}
-          <SkipLinks />
+          {/* <SkipLinks /> */}
 
           <Map role="complementary" aria-label="map"{...this.state}
             closeAllMarkers={this.closeAllMarkers}
             handleMarkerClick={this.handleMarkerClick} />
 
           {/* <TestBar/> */}
-
-          <InfoCards role="main" aria-label="info cards"{...this.state}
+          {/*
+                    <InfoCards role="main" aria-label="info cards"{...this.state}
             handleListItemClick={this.handleListItemClick} />
+
+          */}
+
 
 
           {/* skip links to get across to top of info cards or back to search field */}
