@@ -1,38 +1,52 @@
-class Helper {
-    static baseURL() {
-        return "https://api.foursquare.com/v2"
-    }
+export default {
 
-     //keys for foursquare auth
-    //version required-only update after code review
-    static auth(){
+    fetchFourSquareData: function(endpoint, method, urlParams) {
+        const data = {
+            method,
+            headers: {
+                Accept: 'application/json'
+            }
+        };
+
+        const url = this.urlBuilder(endpoint, urlParams);
+        console.log("url: ", url)
+        return fetch(
+            url,
+            data
+        )
+            .then(this.checkStatus)
+            .then(response => response.json()
+            )
+    },
+
+    urlBuilder: function(endpoint, urlParams){
         const keys = {
-            client_id: 'SHG24GNTPQZPXQ5QWTHSC2EPVTMXXQXPKDEU2JTECTD3U3YM',
-            client_secret: 'JEZG1NIFPZ222TBQ5U4XTPL3GMA1IGQRJDKX4QJ52RYVE50K',
-            v:'20181101'
+            client_id: '1ME2SARSSOWK1FGQC02X1T55ZADLX11VFBCS4VYHQVRFCX51',
+            client_secret: '5N54NHAO0LW5OHJATJB4MJX1BXFD20OISUGZEBLD0WWW0VAL',
+            v: '20181111'
         };
 
-        return Object.keys(keys)
-            .map(key => `${key}=${keys[key]}`)
-            .join('&');
-    }
+        return `https://api.foursquare.com/v2` +
+            `${endpoint}?` +
+            `${this.joinKeys(keys)}&${this.joinKeys(urlParams)}`
+    },
 
-    static urlBuilder(urlParams) {
-        if (!urlParams) {
-            return '';
-        }
-        return Object.keys(urlParams)
-            .map(key => `${key}=${urlParams[key]}`)
-            .join('&');
-    }
+    search: function(urlParams){
+        const endpoint = '/venues/search';
+        const method = 'GET';
+       return this.fetchFourSquareData(endpoint, method, urlParams)
+    },
 
-    static headers() {
-        return {
-            Accept: 'application/json'
-        };
-    }
+    getVenueDetails: function(VENUE_ID) {
+        console.log("getVenueDetails got called with ", VENUE_ID)
+       return this.fetchFourSquareData(`/venues/${VENUE_ID}`, 'GET')
+    },
 
-    static checkStatus(response) {
+    getVenuePhotos: function(VENUE_ID){
+        return this.fetchFourSquareData(`/venues/${VENUE_ID}/photos`, 'GET')
+    },
+
+    checkStatus: function(response) {
         console.log("response in checkstatus", response)
         if (response.ok) {
             return response;
@@ -41,35 +55,14 @@ class Helper {
             error = response;
             throw error;
         }
-    }
-    static simpleFetch(endpoint, method, urlParams) {
-        let requestData = {
-            method,
-            headers: Helper.headers()
-        };
-        console.log({ requestData })
-        console.log( "endpoint: ", endpoint, "urlparams: ", urlParams)
-        return fetch(
-            `${Helper.baseURL()}${endpoint}?${Helper.auth()}&${Helper.urlBuilder(
-                urlParams
-            )}`,
-            requestData
-        )
-            .then(Helper.checkStatus)
-            .then(response => response.json());
-    }
-}
-
-export default class FourSquareAPI {
-    static search(urlParams) {
-        console.log("urlparams", urlParams)
-        return Helper.simpleFetch('/venues/search', 'GET', urlParams);
-    }
-    static getVenueDetails(VENUE_ID) {
-        console.log("VENUE ID IN SF: ", VENUE_ID)
-        return Helper.simpleFetch(`/venues/${VENUE_ID}`, 'GET');
-    }
-    static getVenuePhotos(VENUE_ID) {
-        return Helper.simpleFetch(`/venues/${VENUE_ID}/photos`, 'GET');
+    },
+    
+    joinKeys: function(obj) {
+        if (!obj) {
+            return '';
+        }
+        return Object.keys(obj)
+            .map(key => `${key}=${obj[key]}`)
+            .join('&');
     }
 }
