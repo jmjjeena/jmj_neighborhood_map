@@ -102,11 +102,11 @@ class App extends Component {
             handleMarkerClick={this.handleMarkerClick} />
 
           {/* <TestBar/> */}
-          {/*
+          
                     <InfoCards role="main" aria-label="info cards"{...this.state}
             handleListItemClick={this.handleListItemClick} />
 
-          */}
+         
 
 
 
